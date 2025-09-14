@@ -1,0 +1,32 @@
+name: Update Trends
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "13 6 * * *" # täglich 06:13 UTC
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch & build trends.json
+        run: |
+          python scripts/trend_fetcher_plus.py
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add trends.json
+          git commit -m "chore: update trends.json" || echo "no changes"
+          git push
