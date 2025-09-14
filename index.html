@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Auto-Trendboard</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>Auto-Trendboard</h1>
+    <p class="muted">Live aus GitHub (Google Trends, optional TikTok CSV). Aktualisiert automatisch per GitHub Actions.</p>
+    <div id="srcs" class="badges"></div>
+  </header>
+
+  <main class="container card">
+    <div class="toolbar">
+      <label class="field">
+        <span>Nische</span>
+        <select id="niche">
+          <option value="alle">Alle</option>
+          <option value="Kleidung">Kleidung</option>
+          <option value="Elektronik">Elektronik</option>
+          <option value="Motorrad">Motorrad</option>
+          <option value="Sonstiges">Sonstiges</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Suche</span>
+        <input id="q" type="search" placeholder="Titel / Quelle / Artikel…" />
+      </label>
+      <label class="field">
+        <span>Sortieren</span>
+        <select id="sort">
+          <option value="score">Score (absteigend)</option>
+          <option value="title">Titel (A–Z)</option>
+          <option value="niche">Nische (A–Z)</option>
+        </select>
+      </label>
+      <button id="reload" class="primary">Reload</button>
+      <span id="meta" class="muted meta"></span>
+    </div>
+
+    <div id="list" class="grid"></div>
+  </main>
+
+  <footer class="container foot muted">
+    <span>Quelle: Google Daily Trends (DE) + optional TikTok CSV. Dieses Dashboard ist statisch (GitHub Pages).</span>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
